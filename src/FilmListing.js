@@ -8,6 +8,7 @@ const FilmListing = ({ listings, title }) => {
       key={i}
       listing={film}
       title={film.title}
+      year={film.release_date}
       backdropPath={film.backdrop_path}
       posterPath={film.poster_path}
     />
