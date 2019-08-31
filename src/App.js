@@ -3,17 +3,23 @@ import "./App.css";
 import FilmListing from "./FilmListing";
 import FilmDetails from "./FilmDetails";
 import TMDB from "./TMDB";
+import FilmRow from "./FilmRow";
 class App extends Component {
+  filmListingTitles = [];
+  initialListings = TMDB["films"].map(film => {
+    this.filmListingTitles.push(film.title);
+    return film;
+  });
   state = {
     listings: this.initialListings,
     title: []
   };
+
   componentDidMount() {
-    const initialListings = TMDB["films"];
-    const filmListingTitles = initialListings.map(item => {
-      return item.title;
+    this.setState({
+      listings: this.initialListings,
+      title: this.filmListingTitles
     });
-    this.setState({ title: filmListingTitles });
   }
 
   render() {

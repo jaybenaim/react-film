@@ -1,10 +1,23 @@
 import React, { Component } from "react";
 import TMDB from "./TMDB";
+import FilmRow from "./FilmRow";
 
 const FilmListing = ({ listings, title }) => {
+  const filmElements = listings.map((film, i) => (
+    <FilmRow
+      key={i}
+      listing={film}
+      title={film.title}
+      backdropPath={film.backdrop_path}
+      posterPath={film.poster_path}
+    />
+  ));
   return (
     <div>
-      <h1>{title}</h1>
+      {/* <FilmRow listings={listings} /> */}
+
+      {filmElements}
+      {/* <h1>{title}</h1> */}
       {/* <img src={poster_path} alt={title} /> */}
     </div>
   );
