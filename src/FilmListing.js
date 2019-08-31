@@ -1,27 +1,21 @@
-import React, { Component } from "react";
-import TMDB from "./TMDB";
+import React from "react";
 import FilmRow from "./FilmRow";
+import Fave from "./Fave";
 
-const FilmListing = ({ listings, title }) => {
+const FilmListing = ({ listings, onFilmClick }) => {
   const filmElements = listings.map((film, i) => (
-    <FilmRow
-      key={i}
-      listing={film}
-      title={film.title}
-      year={film.release_date}
-      backdropPath={film.backdrop_path}
-      posterPath={film.poster_path}
-    />
-  ));
-  return (
     <div>
-      {/* <FilmRow listings={listings} /> */}
-
-      {filmElements}
-      {/* <h1>{title}</h1> */}
-      {/* <img src={poster_path} alt={title} /> */}
+      <FilmRow
+        key={i}
+        listing={film}
+        title={film.title}
+        year={film.release_date}
+        posterPath={film.poster_path}
+        onFilmClick={onFilmClick}
+      />
     </div>
-  );
+  ));
+  return <div>{filmElements}</div>;
 };
 
 export default FilmListing;

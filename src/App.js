@@ -3,7 +3,8 @@ import "./App.css";
 import FilmListing from "./FilmListing";
 import FilmDetails from "./FilmDetails";
 import TMDB from "./TMDB";
-import FilmRow from "./FilmRow";
+
+
 class App extends Component {
   filmListingTitles = [];
   initialListings = TMDB["films"].map(film => {
@@ -12,16 +13,20 @@ class App extends Component {
   });
   state = {
     listings: this.initialListings,
-    title: []
+    title: [],
+    current: {}
   };
-
-  componentDidMount() {
-    this.setState({
-      listings: this.initialListings,
-      title: this.filmListingTitles
-    });
+  constructor(props) {
+    super(props);
+    this.setCurrent = this.setCurrent.bind(this);
+  }
+  setCurrent(film) {
+    this.setState({ current: film });
   }
 
+  componentDidUpdate() {
+    console.log(this.state);
+  }
   render() {
     return (
       <div className="film-library">
@@ -30,12 +35,13 @@ class App extends Component {
           <FilmListing
             listings={this.state.listings}
             title={this.state.title}
+            onFilmClick={this.setCurrent}
           />
         </div>
 
         <div className="film-details">
           <h1 className="section-title">DETAILS</h1>
-          <FilmDetails />
+          <FilmDetails listings={this.state.listings} />
         </div>
       </div>
     );
