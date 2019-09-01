@@ -6,7 +6,8 @@ const FilmRow = ({
   posterPath,
   year,
   onFilmClick,
-  onFaveToggle
+  onFaveToggle,
+  isFave
 }) => {
   const newPosterPath = "https://image.tmdb.org/t/p/w780/" + posterPath;
   const fullYear = new Date(year);
@@ -28,7 +29,7 @@ const FilmRow = ({
         <h1>{title}</h1>
         <p>{fullYear.getFullYear()}</p>
       </div>
-      <Fave onFaveToggle={onFaveToggle} listing={listing} />
+      <Fave onFaveToggle={onFaveToggle} listing={listing} isFave={isFave} />
     </div>
   );
 };

@@ -8,14 +8,13 @@ class Fave extends Component {
   handleFave = e => {
     e.stopPropagation();
     this.props.onFaveToggle();
-    console.log(this.state);
   };
   render() {
     const isFave = this.props.isFave ? "remove_from_queue" : "add_to_queue";
     const faveClassName = `film-row-fave ${isFave}`;
     return (
       <div
-        className={isFave}
+        className={faveClassName}
         onClick={() => this.props.onFaveToggle(this.props.listing)}
       >
         <p className="material-icons">add_to_queue</p>

@@ -16,10 +16,12 @@ class App extends Component {
   });
   state = {
     listings: this.initialListings,
+    newListings: [],
     title: [],
     current: {},
     faves: [],
-    newFaves: []
+    newFaves: [],
+    isFave: false
   };
 
   setCurrent(film) {
@@ -27,16 +29,21 @@ class App extends Component {
   }
   handleFaveToggle = film => {
     const filmIndex = this.state.newFaves.indexOf(film);
-    const isThere = this.state.newFaves.includes(film.title);
-
+    const isThere = this.state.newFaves.includes(film);
+    this.state.isFave
+      ? this.setState({ isFave: false })
+      : this.setState({ isFave: true });
     isThere
       ? this.state.newFaves.pop(filmIndex)
-      : this.state.newFaves.push(film.title);
+      : this.state.newFaves.push(film);
     this.setState({ faves: this.state.newFaves });
   };
-  componentDidUpdate() {
-    console.log(this.state);
-  }
+  handleFilterClick = filter => {
+    filter === "all"
+      ? this.state.newListings.push(this.state.listings)
+      : this.setState({ newListings: this.state.newFaves });
+  };
+
   render() {
     return (
       <div className="film-library">
@@ -48,6 +55,8 @@ class App extends Component {
             onFilmClick={this.setCurrent}
             faves={this.state.faves}
             onFaveToggle={this.handleFaveToggle}
+            handleFilterClick={this.handleFilterClick}
+            isFave={this.state.isFave}
           />
         </div>
 
