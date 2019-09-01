@@ -4,7 +4,6 @@ import FilmListing from "./FilmListing";
 import FilmDetails from "./FilmDetails";
 import TMDB from "./TMDB";
 
-
 class App extends Component {
   filmListingTitles = [];
   initialListings = TMDB["films"].map(film => {
@@ -25,7 +24,7 @@ class App extends Component {
   }
 
   componentDidUpdate() {
-    console.log(this.state);
+    // console.log(this.state);
   }
   render() {
     return (
