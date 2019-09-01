@@ -1,9 +1,16 @@
 import React from "react";
 import Fave from "../Fave";
-const FilmRow = ({ listing, title, posterPath, year, onFilmClick }) => {
+const FilmRow = ({
+  listing,
+  title,
+  posterPath,
+  year,
+  onFilmClick,
+  onFaveToggle
+}) => {
   const newPosterPath = "https://image.tmdb.org/t/p/w780/" + posterPath;
   const fullYear = new Date(year);
-  
+
   const handleDetailsClick = film => {
     console.log("Fetching details for " + film.title);
   };
@@ -21,7 +28,7 @@ const FilmRow = ({ listing, title, posterPath, year, onFilmClick }) => {
         <h1>{title}</h1>
         <p>{fullYear.getFullYear()}</p>
       </div>
-      <Fave />
+      <Fave onFaveToggle={onFaveToggle} listing={listing} />
     </div>
   );
 };

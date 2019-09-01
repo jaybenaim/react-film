@@ -10,7 +10,7 @@ class FilmListing extends Component {
   };
 
   render() {
-    const { listings, onFilmClick } = this.props;
+    const { listings, onFilmClick, onFaveToggle } = this.props;
 
     const filmElements = listings.map((film, i) => (
       <div>
@@ -21,6 +21,7 @@ class FilmListing extends Component {
           year={film.release_date}
           posterPath={film.poster_path}
           onFilmClick={onFilmClick}
+          onFaveToggle={onFaveToggle}
         />
       </div>
     ));

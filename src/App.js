@@ -5,6 +5,10 @@ import FilmDetails from "./FilmDetails";
 import TMDB from "./TMDB";
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.setCurrent = this.setCurrent.bind(this);
+  }
   filmListingTitles = [];
   initialListings = TMDB["films"].map(film => {
     this.filmListingTitles.push(film.title);
@@ -13,18 +17,21 @@ class App extends Component {
   state = {
     listings: this.initialListings,
     title: [],
-    current: {}
+    current: {},
+    faves: [],
+    newFaves: []
   };
-  constructor(props) {
-    super(props);
-    this.setCurrent = this.setCurrent.bind(this);
-  }
+
   setCurrent(film) {
     this.setState({ current: film });
   }
-
+  handleFaveToggle = film => {
+    const filmIndex = Array.prototype.indexOf();
+    this.state.newFaves.push(film.title);
+    this.setState({ faves: this.state.newFaves });
+  };
   componentDidUpdate() {
-    // console.log(this.state);
+    console.log(this.state);
   }
   render() {
     return (
@@ -35,6 +42,8 @@ class App extends Component {
             listings={this.state.listings}
             title={this.state.title}
             onFilmClick={this.setCurrent}
+            faves={this.state.faves}
+            onFaveToggle={this.handleFaveToggle}
           />
         </div>
 
