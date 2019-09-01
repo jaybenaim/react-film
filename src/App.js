@@ -27,8 +27,13 @@ class App extends Component {
   }
   handleFaveToggle = film => {
     const filmIndex = Array.prototype.indexOf();
-    this.state.newFaves.push(film.title);
-    this.setState({ faves: this.state.newFaves });
+    const isThere = this.state.newFaves.includes(film.title);
+    isThere
+      ? this.setState({ faves: this.state.faves })
+      : this.state.newFaves.push(film.title);
+
+    console.log(this.state.faves);
+    console.log(this.state.newFaves);
   };
   componentDidUpdate() {
     console.log(this.state);

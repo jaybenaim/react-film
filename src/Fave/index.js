@@ -8,8 +8,6 @@ class Fave extends Component {
   handleFave = e => {
     e.stopPropagation();
     this.props.onFaveToggle();
-    // if (this.state.isFave === false) this.setState({ isFave: true });
-    // else this.setState({ isFave: false });
     console.log(this.state);
   };
   render() {
