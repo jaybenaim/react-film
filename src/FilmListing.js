@@ -5,9 +5,7 @@ class FilmListing extends Component {
   state = {
     filter: "all"
   };
-  // handleFilterClick = filter => {
-  //   console.log(filter);
-  // };
+ 
 
   render() {
     const {
